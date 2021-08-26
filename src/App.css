@@ -1,0 +1,21 @@
+.App {
+  margin: 10vw auto;
+  background-color: #fff;
+  width: 75vw;
+  border-radius: 5px;
+  padding: 1rem;
+}
+.App * {
+  letter-spacing: 2px;
+}
+.App > article > h3 {
+  text-align: center;
+  margin: 0 !important;
+  margin-bottom: 10px !important;
+  color: #272848;
+}
+@media screen and (min-width: 850px) {
+  .App {
+    width: 55vw;
+  }
+}

@@ -1,0 +1,11 @@
+#input {
+  display: inline;
+  width: 75%;
+}
+#btn-submit {
+  position: relative;
+  top: -2px;
+  float: right;
+  color: #272848 !important;
+  font-weight: 500;
+}
