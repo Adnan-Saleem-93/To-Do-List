@@ -1,11 +1,19 @@
+#input-area {
+  display: inline-block;
+  width: 80%;
+}
 #input {
   display: inline;
-  width: 75%;
 }
 #btn-submit {
   position: relative;
-  top: -2px;
+  /* top: -2px; */
   float: right;
   color: #272848 !important;
   font-weight: 500;
+}
+#input-error {
+  color: red;
+  font-size: 14px;
+  margin-top: 3px;
 }

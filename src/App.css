@@ -4,11 +4,12 @@
   width: 75vw;
   border-radius: 5px;
   padding: 1rem;
+  border: 1px solid #7d7ddacc;
 }
 .App * {
   letter-spacing: 2px;
 }
-.App > article > h3 {
+.App h3 {
   text-align: center;
   margin: 0 !important;
   margin-bottom: 10px !important;
