@@ -4,25 +4,32 @@ import {FormControl, Button} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faExclamationCircle} from "@fortawesome/free-solid-svg-icons";
 
-const InputSection = ({onSubmit}) => {
-  const [task, setTask] = useState("");
+const InputSection = ({onSubmit, value, onHandleChange}) => {
+  // #region useState Hooks
   const [showError, setShowError] = useState(false);
+  //#endregion
+
+  // #region methods
   const handleChange = (event) => {
-    setTask(event.target.value);
-  };
-  const handleSubmit = () => {
-    if (task.trim() !== "") {
-      onSubmit(task);
-      setShowError(false);
-      setTask("");
-    } else {
-      setShowError(true);
-    }
+    onHandleChange(event.target.value);
   };
 
+  const handleSubmit = () => {
+    if (value.trim() !== "") {
+      onSubmit(value);
+      setShowError(false);
+      onHandleChange("");
+      document.getElementById("input").style.borderColor = "#ced4da";
+    } else {
+      setShowError(true);
+      document.getElementById("input").style.borderColor = "red";
+    }
+  };
+  //#endregion
+
   return (
-    <article>
-      <div id="input-area">
+    <article className="input">
+      <div id="input-form">
         <FormControl
           placeholder="Enter item, e.g., Gym"
           aria-label="todoItem"
@@ -30,7 +37,7 @@ const InputSection = ({onSubmit}) => {
           id="input"
           autoFocus={true}
           onChange={handleChange}
-          value={task}
+          value={value}
         />
         {showError && (
           <p id="input-error">

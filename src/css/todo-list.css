@@ -1,0 +1,38 @@
+.tasks {
+  margin: 1rem 0.5rem !important;
+}
+.tasks > h3 {
+  margin: 3rem;
+  color: #5f61aa;
+}
+.single-task {
+  width: 80%;
+}
+.description {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.actions {
+  float: right;
+}
+.single-task [class*="fa"] {
+  cursor: pointer;
+  margin-left: 10px !important;
+}
+.fa-check,
+.fa-times {
+  color: dodgerblue;
+  margin-right: 10px !important;
+}
+.fa-edit {
+  color: #6b6be0;
+}
+.fa-trash {
+  color: #ae3434cc;
+}
+.fa-edit:hover {
+  color: #4747ca;
+}
+.fa-trash:hover {
+  color: #b33131;
+}
