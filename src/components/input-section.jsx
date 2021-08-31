@@ -25,6 +25,11 @@ const InputSection = ({onSubmit, value, onHandleChange, editTask}) => {
       document.getElementById("input").style.borderColor = "red";
     }
   };
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  };
   //#endregion
 
   return (
@@ -38,6 +43,7 @@ const InputSection = ({onSubmit, value, onHandleChange, editTask}) => {
           autoFocus={true}
           onChange={handleChange}
           value={value}
+          onKeyDown={handleKeyDown}
         />
         {showError && (
           <p id="input-error">

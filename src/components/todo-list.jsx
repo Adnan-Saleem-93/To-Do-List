@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FormCheck} from "react-bootstrap";
 
-const ToDoList = ({tasks, onEdit, onDelete, onCheck}) => {
+const ToDoList = ({tasks, onEdit, onDelete, onCheck, onClearAll}) => {
   return (
     <article className="tasks">
       {tasks.length <= 0 ? (
@@ -42,7 +42,9 @@ const ToDoList = ({tasks, onEdit, onDelete, onCheck}) => {
       )}
       {tasks.length > 0 && (
         <div className="clear-all-div">
-          <span className="btn-clearAll">Clear Items</span>
+          <span className="btn-clearAll" onClick={onClearAll}>
+            Clear Items
+          </span>
         </div>
       )}
     </article>

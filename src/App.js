@@ -1,13 +1,21 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import {Alert} from "react-bootstrap";
 import "./App.css";
 import InputSection from "./components/input-section";
 import ToDoList from "./components/todo-list";
 
 function App() {
-  // #region useState Hooks
+  // #region Hooks
   const [task, setTask] = useState("");
   const [taskList, setTaskList] = useState([]);
   const [edit, setEdit] = useState({flag: false, task: {}});
+  const [alert, setAlert] = useState({show: false, message: ""});
+
+  useEffect(() => {
+    setTimeout(() => {
+      setAlert({...alert, show: false, message: ""});
+    }, 5000);
+  }, [alert]);
   //#endregion
 
   // #region methods
@@ -16,8 +24,10 @@ function App() {
     if (edit.flag) {
       let itemToUpdate = newList.find((task) => task.id === edit.task.id);
       itemToUpdate.description = task;
+      setAlert({...alert, show: true, message: "Item Updated"});
     } else {
       newList.push({id: newList.length + 1, description: item, isDone: false});
+      setAlert({...alert, show: true, message: "New Item Added"});
     }
     setTaskList(newList);
     setEdit({...edit, flag: false, task: {}});
@@ -28,39 +38,54 @@ function App() {
   };
 
   const handleEdit = (index) => {
-    let item = taskList.find((task, idx) => idx === index);
-    setTask(item.description);
-    setEdit({...edit, flag: true, task: item});
+    let itemToEdit = taskList.find((task, idx) => idx === index);
+    setTask(itemToEdit.description);
+    setEdit({...edit, flag: true, task: itemToEdit});
   };
   const handleDelete = (index) => {
     let filteredList = taskList.filter((item, idx) => idx !== index);
     setTaskList(filteredList);
+    setAlert({...alert, show: true, message: "Item Removed"});
   };
   const handleCheck = (index) => {
     let newList = [...taskList];
     newList[index].isDone = !newList[index].isDone;
     setTaskList(newList);
+    setAlert({
+      ...alert,
+      show: true,
+      message: `Task ${newList[index].isDone ? "Completed" : "Set as Incomplete"}`
+    });
   };
+  const handleClearAll = () => {
+    setTaskList([]);
+    setAlert({...alert, show: true, message: "List Cleared"});
+  };
+
   //#endregion
 
   return (
-    <section className="App">
-      <article className="header">
-        <h3>To Do List</h3>
-      </article>
-      <InputSection
-        onSubmit={handleSubmit}
-        value={task}
-        onHandleChange={handleChange}
-        editTask={edit.flag}
-      />
-      <ToDoList
-        tasks={taskList}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-        onCheck={handleCheck}
-      />
-    </section>
+    <>
+      {alert.show && <Alert variant="danger">{alert.message}</Alert>}
+      <section className="App">
+        <article className="header">
+          <h3>To Do List</h3>
+        </article>
+        <InputSection
+          onSubmit={handleSubmit}
+          value={task}
+          onHandleChange={handleChange}
+          editTask={edit.flag}
+        />
+        <ToDoList
+          tasks={taskList}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+          onCheck={handleCheck}
+          onClearAll={handleClearAll}
+        />
+      </section>
+    </>
   );
 }
 

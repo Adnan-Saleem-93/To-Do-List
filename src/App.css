@@ -19,3 +19,12 @@
     width: 55vw;
   }
 }
+.alert {
+  padding: 0 !important;
+  text-align: center !important;
+  font-size: 12px;
+  font-weight: 800;
+  top: 5rem;
+  width: 45vw;
+  margin: 0 auto;
+}
