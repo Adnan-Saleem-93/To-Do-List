@@ -4,7 +4,7 @@ import {FormControl, Button} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faExclamationCircle} from "@fortawesome/free-solid-svg-icons";
 
-const InputSection = ({onSubmit, value, onHandleChange}) => {
+const InputSection = ({onSubmit, value, onHandleChange, editTask}) => {
   // #region useState Hooks
   const [showError, setShowError] = useState(false);
   //#endregion
@@ -49,7 +49,7 @@ const InputSection = ({onSubmit, value, onHandleChange}) => {
         )}
       </div>
       <Button variant="info" id="btn-submit" onClick={handleSubmit}>
-        Submit
+        {editTask ? "Update" : "Add"}
       </Button>
     </article>
   );

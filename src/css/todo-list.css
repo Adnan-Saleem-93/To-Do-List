@@ -27,12 +27,20 @@
 .fa-edit {
   color: #6b6be0;
 }
-.fa-trash {
+.fa-trash,
+.btn-clearAll {
   color: #ae3434cc;
+  cursor: pointer;
 }
 .fa-edit:hover {
   color: #4747ca;
 }
-.fa-trash:hover {
+.fa-trash:hover,
+.btn-clearAll:hover {
   color: #b33131;
+}
+.clear-all-div {
+  margin: 1rem;
+  text-align: center;
+  font-weight: 700;
 }
