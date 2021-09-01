@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Alert} from "react-bootstrap";
+import {Alert, Toast, ToastContainer} from "react-bootstrap";
 import "./App.css";
 import InputSection from "./components/input-section";
 import ToDoList from "./components/todo-list";
@@ -13,10 +13,12 @@ function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      setAlert({...alert, show: false, message: ""});
-    }, 5000);
+      if (alert.show === true) {
+        setAlert({...alert, show: false, message: ""});
+      }
+    }, 3000);
   }, [alert]);
-  //#endregion
+  #endregion
 
   // #region methods
   const handleSubmit = (item) => {
@@ -66,7 +68,6 @@ function App() {
 
   return (
     <>
-      {alert.show && <Alert variant="danger">{alert.message}</Alert>}
       <section className="App">
         <article className="header">
           <h3>To Do List</h3>
@@ -84,6 +85,21 @@ function App() {
           onCheck={handleCheck}
           onClearAll={handleClearAll}
         />
+        <article>
+          <ToastContainer className="p-3" position="top-center">
+            <Toast
+              show={alert.show}
+              bg="primary"
+              closeButton={false}
+              onClose={() => setAlert({...alert, show: false, message: ""})}
+            >
+              <Toast.Header>
+                <span>Success</span>
+              </Toast.Header>
+              <Toast.Body>{alert.message}</Toast.Body>
+            </Toast>
+          </ToastContainer>
+        </article>
       </section>
     </>
   );

@@ -28,3 +28,13 @@
   width: 45vw;
   margin: 0 auto;
 }
+.btn-close {
+  position: absolute;
+  right: 35px;
+}
+.toast-body {
+  color: white;
+}
+.toast-header > span {
+  font-weight: 700;
+}
