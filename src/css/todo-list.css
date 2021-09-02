@@ -19,8 +19,7 @@
   cursor: pointer;
   margin-left: 10px !important;
 }
-.fa-check,
-.fa-times {
+.fa-check {
   color: dodgerblue;
   margin-right: 10px !important;
 }

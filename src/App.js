@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {Alert, Toast, ToastContainer} from "react-bootstrap";
+import {Toast, ToastContainer} from "react-bootstrap";
 import "./App.css";
 import InputSection from "./components/input-section";
 import ToDoList from "./components/todo-list";
@@ -18,7 +18,7 @@ function App() {
       }
     }, 3000);
   }, [alert]);
-  #endregion
+  // #endregion
 
   // #region methods
   const handleSubmit = (item) => {
@@ -63,6 +63,10 @@ function App() {
     setTaskList([]);
     setAlert({...alert, show: true, message: "List Cleared"});
   };
+  const handleClearInput = () => {
+    setTask("");
+    setEdit({...edit, flag: false, task: {}});
+  };
 
   //#endregion
 
@@ -77,6 +81,7 @@ function App() {
           value={task}
           onHandleChange={handleChange}
           editTask={edit.flag}
+          onClearInput={handleClearInput}
         />
         <ToDoList
           tasks={taskList}

@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import "../css/input-section.css";
-import {FormControl, Button} from "react-bootstrap";
+import {FormControl, Button, InputGroup} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faExclamationCircle} from "@fortawesome/free-solid-svg-icons";
+import {faExclamationCircle, faTimes} from "@fortawesome/free-solid-svg-icons";
 
-const InputSection = ({onSubmit, value, onHandleChange, editTask}) => {
+const InputSection = ({onSubmit, value, onHandleChange, editTask, onClearInput}) => {
   // #region useState Hooks
   const [showError, setShowError] = useState(false);
   //#endregion
@@ -30,21 +30,35 @@ const InputSection = ({onSubmit, value, onHandleChange, editTask}) => {
       handleSubmit();
     }
   };
+
   //#endregion
 
   return (
     <article className="input">
       <div id="input-form">
-        <FormControl
-          placeholder="Enter item, e.g., Gym"
-          aria-label="todoItem"
-          aria-describedby="basic-todoItem"
-          id="input"
-          autoFocus={true}
-          onChange={handleChange}
-          value={value}
-          onKeyDown={handleKeyDown}
-        />
+        <InputGroup className="mb-3">
+          <FormControl
+            placeholder="Enter item, e.g., Gym"
+            aria-label="todoItem"
+            aria-describedby="basic-todoItem"
+            id="input"
+            autoFocus={true}
+            onChange={handleChange}
+            value={value}
+            onKeyDown={handleKeyDown}
+          />
+          {/* {value.length > 0 && ( */}
+          <Button
+            variant="outline-primary"
+            id="btn-clearInput"
+            title="Clear Input"
+            style={{visibility: value.length > 0 ? "initial" : "hidden"}}
+            onClick={onClearInput}
+          >
+            <FontAwesomeIcon icon={faTimes} />
+          </Button>
+          {/* )} */}
+        </InputGroup>
         {showError && (
           <p id="input-error">
             <span>

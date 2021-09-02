@@ -16,3 +16,11 @@
   font-size: 14px;
   margin-top: 3px;
 }
+#btn-clearInput {
+  color: #104087de !important;
+  border: none !important;
+}
+#btn-clearInput:hover {
+  background-color: #104087de !important;
+  color: white !important;
+}
